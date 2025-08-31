@@ -1,0 +1,101 @@
+{
+  "form_uid": "org.example.sample.v1",
+  "issuer": "example.org",
+  "version": "1.0.0",
+  "variant": {
+    "lang": "en-GB",
+    "region": "UK"
+  },
+  "template": {
+    "pdf_sha256": "93109958cd96c25c0c4db521ca002fec3fdbd7dc4842b935ace7c816dd282ad3"
+  },
+  "anchors": [
+    {
+      "field_id": "person.name",
+      "page": 1,
+      "bbox": [
+        72,
+        680,
+        200,
+        18
+      ],
+      "type": "string",
+      "required": true
+    },
+    {
+      "field_id": "person.nin",
+      "page": 1,
+      "bbox": [
+        72,
+        650,
+        150,
+        18
+      ],
+      "type": "string",
+      "required": true
+    },
+    {
+      "field_id": "amount",
+      "page": 1,
+      "bbox": [
+        400,
+        120,
+        120,
+        18
+      ],
+      "type": "number",
+      "required": true
+    }
+  ],
+  "schema_inline": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Sample Output",
+    "type": "object",
+    "properties": {
+      "person": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "nin": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "nin"
+        ]
+      },
+      "amount": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "required": [
+      "person",
+      "amount"
+    ]
+  },
+  "validation": {
+    "rules": [
+      {
+        "field": "person.nin",
+        "regex": "^[A-CEGHJ-PR-TW-Z]{2}\\d{6}[A-D]$"
+      },
+      {
+        "field": "amount",
+        "min": 0
+      }
+    ]
+  },
+  "prompt_pack_inline": {
+    "global": "# Sample Prompt Pack (global)\n\nSystem:\n- Extract fields according to schema. Round currency to 2 decimals. Ignore marginal notes.\n- If a field is unreadable, set it to null and add a note in `__notes__`.\n\nField Hints:\n- person.name -> Person's full name, text near top-left box.\n- person.nin -> UK National Insurance Number (format: AA999999A).\n- amount -> Numeric total in GBP.\n"
+  },
+  "destinations": [
+    {
+      "type": "api",
+      "uri": "https://intake.example.org"
+    }
+  ]
+}

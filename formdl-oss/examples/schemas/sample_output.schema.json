@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sample Output",
+  "type": "object",
+  "properties": {
+    "person": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "nin": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "nin"
+      ]
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "person",
+    "amount"
+  ]
+}

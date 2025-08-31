@@ -1,0 +1,38 @@
+[project]
+name = "formdl"
+version = "0.1.0"
+description = "FormDL — Invisible AI superpowers for legacy forms (profiles, anchors, validation, prompts)"
+authors = [{ name="FormDL Contributors", email="opensource@example.org"}]
+license = { text = "Apache-2.0" }
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "pydantic>=2.6",
+  "click>=8.1",
+  "jsonschema>=4.22",
+  "cbor2>=5.6",
+  "qrcode>=7.4",
+  "Pillow>=10.0",
+  "pikepdf>=9.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4",
+  "ruff>=0.6.0",
+  "mypy>=1.7.0"
+]
+
+[project.scripts]
+formdl = "formdl.cli:app"
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

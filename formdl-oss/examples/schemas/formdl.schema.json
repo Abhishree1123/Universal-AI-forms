@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://formdl.org/schemas/formdl-0.1.json",
+  "title": "FormDL Profile (v0.1)",
+  "type": "object",
+  "required": [
+    "form_uid",
+    "issuer",
+    "version"
+  ],
+  "properties": {
+    "form_uid": {
+      "type": "string"
+    },
+    "issuer": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "template": {
+      "type": "object",
+      "properties": {
+        "pdf_sha256": {
+          "type": "string"
+        }
+      }
+    },
+    "anchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "field_id",
+          "page",
+          "bbox",
+          "type"
+        ],
+        "properties": {
+          "field_id": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "bbox": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "type": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "schema_uri": {
+      "type": "string"
+    },
+    "schema_inline": {
+      "type": "object"
+    },
+    "validation": {
+      "type": "object"
+    },
+    "prompt_pack_uri": {
+      "type": "string"
+    },
+    "prompt_pack_inline": {
+      "type": "object"
+    },
+    "destinations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "uri"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "uri": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
