@@ -39,7 +39,7 @@ Process: It uses the anchors to perform targeted OCR, then sends the raw data an
 
 Route: The final structured JSON is routed to a specified destination (API, queue, etc.) for further processing.
 
-!
+
 
 
 📦 Repo Layout
